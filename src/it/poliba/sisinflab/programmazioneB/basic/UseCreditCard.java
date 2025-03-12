@@ -1,5 +1,7 @@
 package it.poliba.sisinflab.programmazioneB.basic;
 
+import it.poliba.sisinflab.programmazioneB.util.CreditCard;
+
 public class UseCreditCard {
     public static void main(String[] args) {
         CreditCard[] wallet = new CreditCard[3];

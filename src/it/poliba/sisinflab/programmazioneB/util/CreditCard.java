@@ -1,4 +1,4 @@
-package it.poliba.sisinflab.programmazioneB.basic;
+package it.poliba.sisinflab.programmazioneB.util;
 
 public class CreditCard {
     private String customer;      // name of the customer (e.g., "John Bowman")
