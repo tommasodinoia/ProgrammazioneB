@@ -20,11 +20,14 @@ public class UseCreditCard {
 
         for (CreditCard card : wallet) {
             CreditCard.printSummary(card); // calling static method
-            System.out.println();
             while (card.getBalance() > 200.0) {
                 card.makePayment(200);
                 System.out.println("New balance = " + card.getBalance());
             }
+            System.out.println();
         }
+
+        wallet[2].setLimit(10000);
+        CreditCard.printSummary(wallet[2]);
     }
 }

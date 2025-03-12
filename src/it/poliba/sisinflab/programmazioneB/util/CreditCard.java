@@ -35,6 +35,10 @@ public class CreditCard {
         return this.limit;
     }
 
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
     public double getBalance() {
         return this.balance;
     }
