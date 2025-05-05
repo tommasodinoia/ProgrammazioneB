@@ -29,7 +29,7 @@ public class EccezioniDemo {
 
             System.out.println(  "\nStack trace ottenuto da getStackTrace:" );
             System.out.println();
-            System.out.println( "Classe\t\t\t\t\t\t\t\t\t\t\t  File\t\t\t  Linea\t  Metodo" );
+            System.out.println( "Classe\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  File\t\t\t  Linea\t  Metodo" );
 
             for ( int i = 0; i < traceElements.length; i++ ) {
                 StackTraceElement currentElement = traceElements[ i ];

@@ -109,7 +109,7 @@ public class SimplyLinkedList<E> {
             return 0;
         cursore = head;
         index = 1;
-        while(cursore.getNext().getElement()!= e && cursore.getNext() != null) {
+        while(cursore.getNext().getElement() != e && cursore.getNext() != null) {
             cursore = cursore.getNext();
             index++;
         }

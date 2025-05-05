@@ -136,7 +136,6 @@ public class DoubleLinkedList<E> {
     }
 
 
-
     public void printListFromHeader(){
         DoubleLinkedNode<E> cursore = header.getNext();
         for(int i = 0; i < this.getSize(); i++){
@@ -152,7 +151,5 @@ public class DoubleLinkedList<E> {
             cursore = cursore.getPrevious();
         }
     }
-
-
 
 }

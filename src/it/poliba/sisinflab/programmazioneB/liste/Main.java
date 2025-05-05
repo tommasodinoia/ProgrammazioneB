@@ -15,7 +15,7 @@ public class Main {
 
         Integer elemento = new Integer(4);
         SimpleNode<Integer> pointer = lista.getHead();
-        while (pointer.getElement().compareTo(elemento) != 1 )
+        while (pointer.getElement() <= elemento)
             pointer = pointer.getNext();
 
         lista.addBefore(elemento,pointer.getElement());
@@ -44,7 +44,7 @@ public class Main {
         DoubleLinkedNode<Integer> pointer2 = dLista.getHeader();
         do{
             pointer2 = pointer2.getNext();
-        } while (pointer2!=dLista.getTrailer() && pointer2.getElement().compareTo(elemento2) != 1);
+        } while (pointer2!=dLista.getTrailer() && pointer2.getElement() <= elemento2);
         //!!! OSSERVAZIONE !!! La condizione del while precedente può generare eccezione se si inverte l'ordine degli operatori del &&
 
         if(pointer2==dLista.getTrailer())
