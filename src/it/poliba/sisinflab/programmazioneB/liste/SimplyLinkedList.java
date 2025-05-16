@@ -109,7 +109,7 @@ public class SimplyLinkedList<E> {
             return 0;
         cursore = head;
         index = 1;
-        while(cursore.getNext().getElement() != e && cursore.getNext() != null) {
+        while(!cursore.getElement().equals(e) && cursore.getNext() != null) {
             cursore = cursore.getNext();
             index++;
         }
@@ -125,7 +125,7 @@ public class SimplyLinkedList<E> {
             this.addFirst(newElement);
         else {
             cursore = head;
-            while(cursore.getNext().getElement()!= e && cursore.getNext() != null)
+            while(!cursore.getElement().equals(e) && cursore.getNext() != null)
                 cursore = cursore.getNext();
             SimpleNode<E> newNode = new SimpleNode<E>(newElement,null);
             newNode.setNext(cursore.getNext());
@@ -141,7 +141,7 @@ public class SimplyLinkedList<E> {
             this.addFirst(newElement);
         else {
             cursore = head;
-            while(cursore.getElement()!= e && cursore.getNext() != null)
+            while(!cursore.getElement().equals(e) && cursore.getNext() != null)
                 cursore = cursore.getNext();
             SimpleNode<E> newNode = new SimpleNode<E>(newElement,null);
             if(cursore == tail)
