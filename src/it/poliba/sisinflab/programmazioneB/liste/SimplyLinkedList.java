@@ -119,46 +119,50 @@ public class SimplyLinkedList<E> {
     }
 
     public void addBefore(E newElement, E e){
-        SimpleNode<E> cursore;
-
-        if(this.isEmpty() || head.getElement() == e)
+        if (this.isEmpty() || head.getElement().equals(e)) {
             this.addFirst(newElement);
-        else {
-            cursore = head;
-            while(!cursore.getElement().equals(e) && cursore.getNext() != null)
-                cursore = cursore.getNext();
-            SimpleNode<E> newNode = new SimpleNode<E>(newElement,null);
-            newNode.setNext(cursore.getNext());
-            cursore.setNext(newNode);
-            size++;
+            return;
         }
+
+        SimpleNode<E> precedente = null;
+        SimpleNode<E> cursore = head;
+
+        while (cursore != null && !cursore.getElement().equals(e)) {
+            precedente = cursore;
+            cursore = cursore.getNext();
+        }
+
+        if (cursore == null) return; // elemento e non trovato
+
+        SimpleNode<E> newNode = new SimpleNode<>(newElement, cursore);
+        precedente.setNext(newNode);
+
+        size++;
     }
 
     public void addAfter(E newElement, E e){
-        SimpleNode<E> cursore;
+        if (this.isEmpty()) return;
 
-        if(this.isEmpty())
-            this.addFirst(newElement);
-        else {
-            cursore = head;
-            while(!cursore.getElement().equals(e) && cursore.getNext() != null)
-                cursore = cursore.getNext();
-            SimpleNode<E> newNode = new SimpleNode<E>(newElement,null);
-            if(cursore == tail)
-                tail = newNode;
-            newNode.setNext(cursore.getNext());
-            cursore.setNext(newNode);
-            size++;
+        SimpleNode<E> cursore = head;
+        while (cursore != null && !cursore.getElement().equals(e)) {
+            cursore = cursore.getNext();
         }
+
+        if (cursore == null) return; // elemento e non trovato
+
+        SimpleNode<E> newNode = new SimpleNode<>(newElement, cursore.getNext());
+        cursore.setNext(newNode);
+        if (cursore == tail)
+            tail = newNode;
+        size++;
     }
 
     public void printList(){
         SimpleNode<E> cursore = head;
-        for(int i = 0; i < this.getSize(); i++){
+        while (cursore != null) {
             System.out.println(cursore.getElement());
             cursore = cursore.getNext();
         }
-
     }
 
 }

@@ -58,42 +58,37 @@ public class DoubleLinkedList<E> {
 
 
     public void addBefore(E newElement, E e){
-        /*
-        Questo if andrebbe migliorato attraverso la gestione delle eccezione di listaVuota
-         */
-        if(this.isEmpty())
+        if(this.isEmpty()) {
             this.addFirst(newElement);
-        else {
-            DoubleLinkedNode<E> cursore;
-
-            cursore = header.getNext();
-
-            while (cursore.getElement() != e && cursore.getNext() != null)
-                cursore = cursore.getNext();
-
-            this.addBetween(newElement, cursore.getPrevious(), cursore);
+            return;
         }
+
+        DoubleLinkedNode<E> cursore = header.getNext();
+
+        while (cursore != trailer && !cursore.getElement().equals(e)) {
+            cursore = cursore.getNext();
+        }
+
+        if (cursore == trailer) return; // e non trovato
+
+        this.addBetween(newElement, cursore.getPrevious(), cursore);
     }
 
     public void addAfter(E newElement, E e){
-        /*
-        Questo if andrebbe migliorato attraverso la gestione delle eccezione di listaVuota
-         */
-        if(this.isEmpty())
+        if(this.isEmpty()) {
             this.addFirst(newElement);
-        else {
-            DoubleLinkedNode<E> cursore;
-
-            cursore = header.getNext();
-
-            while (cursore.getElement() != e && cursore.getNext() != null)
-                cursore = cursore.getNext();
-
-            if (cursore.getNext() == null)
-                this.addLast(newElement);
-            else
-                this.addBetween(newElement, cursore, cursore.getNext());
+            return;
         }
+
+        DoubleLinkedNode<E> cursore = header.getNext();
+
+        while (cursore != trailer && !cursore.getElement().equals(e)) {
+            cursore = cursore.getNext();
+        }
+
+        if (cursore == trailer) return; // e non trovato
+
+        this.addBetween(newElement, cursore, cursore.getNext());
     }
 
 
@@ -119,26 +114,25 @@ public class DoubleLinkedList<E> {
     }
 
     public int getPosition(E e){
-        DoubleLinkedNode<E> cursore;
-        int index;
+        if(this.isEmpty()) return 0;
 
-        if(this.isEmpty())
-            return 0;
-        cursore = header;
-        index = 1;
-        while(cursore.getNext().getElement()!= e && cursore.getNext() != null) {
+        DoubleLinkedNode<E> cursore = header.getNext();
+        int index = 1;
+
+        while (cursore != trailer && !cursore.getElement().equals(e)) {
             cursore = cursore.getNext();
             index++;
         }
-        if(cursore.getNext() == null)
-            return 0;
+
+        if (cursore == trailer) return 0;
+
         return index;
     }
 
 
     public void printListFromHeader(){
         DoubleLinkedNode<E> cursore = header.getNext();
-        for(int i = 0; i < this.getSize(); i++){
+        while (cursore != trailer) {
             System.out.println(cursore.getElement());
             cursore = cursore.getNext();
         }
@@ -146,7 +140,7 @@ public class DoubleLinkedList<E> {
 
     public void printListFromTrailer(){
         DoubleLinkedNode<E> cursore = trailer.getPrevious();
-        for(int i = 0; i < this.getSize(); i++){
+        while (cursore != header) {
             System.out.println(cursore.getElement());
             cursore = cursore.getPrevious();
         }
