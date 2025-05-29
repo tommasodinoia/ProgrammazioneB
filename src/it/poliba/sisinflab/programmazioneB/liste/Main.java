@@ -14,20 +14,25 @@ public class Main {
         lista.addFirst(new Integer(5));
         lista.addFirst(new Integer(15));
         lista.addFirst(new Integer(8));
-        lista.addFirst(new Integer(0));
+        lista.addFirst(new Integer(3));
         lista.addFirst(new Integer(22));
         lista.addFirst(new Integer(13));
         lista.addFirst(new Integer(7));
-        lista.addFirst(new Integer(2));
+        lista.addFirst(new Integer(5));
         lista.addFirst(new Integer(91));
+
+
+        lista.printList();
 
         Integer elemento = new Integer(4);
         SimpleNode<Integer> pointer = lista.getHead();
-        while (pointer.getElement() <= elemento)
+        while (pointer.getElement() > elemento) {
+            System.out.println("\nElemento Corrente: " + pointer.getElement() + " \nElemento:  " + elemento + " \nComparazione: " + pointer.getElement().compareTo(elemento) + " \n" + (pointer.getElement() > elemento));
             pointer = pointer.getNext();
+        }
 
         lista.addBefore(elemento,pointer.getElement());
-       // lista.addLast(elemento);
+       //lista.addLast(elemento);
 
         lista.printList();
 

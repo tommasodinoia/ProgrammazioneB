@@ -1,5 +1,7 @@
 package it.poliba.sisinflab.programmazioneB.liste;
 
+import java.util.NoSuchElementException;
+
 
 public class DoubleLinkedList<E> {
     private DoubleLinkedNode<E> header;
@@ -10,7 +12,9 @@ public class DoubleLinkedList<E> {
         header = new DoubleLinkedNode<E>();
         trailer = new DoubleLinkedNode<E>();
         header.setNext(trailer);
+        header.setPrevious(null);
         trailer.setPrevious(header);
+        trailer.setNext(null);
         size = 0;
     }
 
@@ -25,16 +29,19 @@ public class DoubleLinkedList<E> {
     public int getSize(){
         return size;
     }
+
     public boolean isEmpty(){
         if(size == 0)
             return true;
         return false;
     }
+
     public E getFirst(){
         if(this.isEmpty())
             return null;
         return header.getNext().getElement();
     }
+
     public E getLast(){
         if(this.isEmpty())
             return null;
@@ -92,25 +99,33 @@ public class DoubleLinkedList<E> {
     }
 
 
-    public E remove(DoubleLinkedNode<E> node){
-        DoubleLinkedNode<E> predecessor = node.getPrevious();
-        DoubleLinkedNode<E> successor = node.getNext();
-        predecessor.setNext(successor);
-        successor.setPrevious(predecessor);
+    public E remove(E element){
+        DoubleLinkedNode<E> cursore = header.getNext();
+
+        while (cursore != trailer && !cursore.getElement().equals(element)) {
+            cursore = cursore.getNext();
+        }
+
+        if (cursore == trailer) {
+            throw new NoSuchElementException("Elemento non trovato nella lista.");
+        }
+
+        cursore.getPrevious().setNext(cursore.getNext());
+        cursore.getNext().setPrevious(cursore.getPrevious());
         size--;
-        return node.getElement();
+        return cursore.getElement();
     }
 
     public E removeFirst(){
         if(this.isEmpty())
-            return null;
-        return this.remove(header.getNext());
+            throw new NoSuchElementException("La lista è vuota. Nessun elemento da rimuovere.");
+        return this.remove(header.getNext().getElement());
     }
 
     public E removeLast(){
         if(this.isEmpty())
-            return null;
-        return remove(trailer.getPrevious());
+            throw new NoSuchElementException("La lista è vuota. Nessun elemento da rimuovere.");
+        return this.remove(trailer.getPrevious().getElement());
     }
 
     public int getPosition(E e){
@@ -128,7 +143,6 @@ public class DoubleLinkedList<E> {
 
         return index;
     }
-
 
     public void printListFromHeader(){
         DoubleLinkedNode<E> cursore = header.getNext();

@@ -7,9 +7,9 @@ public class SimplyLinkedList<E> {
     private int size;
 
     public SimplyLinkedList(){
-         head = null;
-         tail = null;
-         size = 0;
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     public SimpleNode<E> getHead(){
